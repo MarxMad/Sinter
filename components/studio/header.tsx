@@ -2,6 +2,7 @@
 
 import { Bell, Search, Menu, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ConnectWallet } from "@/components/blockchain/connect-wallet"
 import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
@@ -28,6 +29,7 @@ export function StudioHeader() {
       </div>
 
       <div className="flex items-center gap-4">
+        <ConnectWallet />
         <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
           <Bell className="h-5 w-5" />
         </Button>

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Menu, X, Disc3 } from "lucide-react"
+import { ConnectWallet } from "@/components/blockchain/connect-wallet"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -33,6 +34,7 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
+            <ConnectWallet />
             <Link href="/login">
               <Button variant="ghost" className="text-foreground">
                 Iniciar sesión
@@ -70,6 +72,7 @@ export function Header() {
               Marketplace
             </Link>
             <div className="flex flex-col gap-2 pt-4 border-t border-border">
+              <ConnectWallet />
               <Link href="/login">
                 <Button variant="ghost" className="w-full text-foreground">
                   Iniciar sesión
