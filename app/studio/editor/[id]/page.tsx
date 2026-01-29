@@ -37,10 +37,10 @@ interface Track {
 }
 
 const initialTracks: Track[] = [
-  { id: "drums", name: "Drums", color: "bg-primary", volume: 80, muted: false, solo: false },
-  { id: "bass", name: "Bass", color: "bg-accent", volume: 75, muted: false, solo: false },
-  { id: "melody", name: "Melody", color: "bg-chart-5", volume: 70, muted: false, solo: false },
-  { id: "synth", name: "Synth Pad", color: "bg-chart-3", volume: 60, muted: false, solo: false },
+  { id: "drums", name: "Batería", color: "bg-primary", volume: 80, muted: false, solo: false },
+  { id: "bass", name: "Bajo", color: "bg-accent", volume: 75, muted: false, solo: false },
+  { id: "melody", name: "Melodía", color: "bg-chart-5", volume: 70, muted: false, solo: false },
+  { id: "synth", name: "Pad sintetizador", color: "bg-chart-3", volume: 60, muted: false, solo: false },
 ]
 
 export default function EditorPage() {
@@ -117,11 +117,11 @@ export default function EditorPage() {
         <div className="flex items-center gap-2">
           <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
             <Save className="h-4 w-4 mr-2" />
-            Save
+            Guardar
           </Button>
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Download className="h-4 w-4 mr-2" />
-            Export
+            Exportar
           </Button>
         </div>
       </div>
@@ -132,7 +132,7 @@ export default function EditorPage() {
         <div className="w-64 bg-card border-r border-border flex flex-col">
           <div className="p-4 border-b border-border">
             <div className="flex items-center justify-between mb-2">
-              <Label className="text-foreground font-medium">Tracks</Label>
+              <Label className="text-foreground font-medium">Pistas</Label>
               <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
                 <Layers className="h-4 w-4" />
               </Button>
@@ -193,7 +193,7 @@ export default function EditorPage() {
           <div className="p-4 border-t border-border">
             <Button variant="outline" className="w-full border-border text-foreground hover:bg-secondary bg-transparent">
               <Music2 className="h-4 w-4 mr-2" />
-              Add Track
+              Añadir pista
             </Button>
           </div>
         </div>

@@ -66,19 +66,28 @@ export default function LibraryPage() {
     }
   }
 
+  const getStatusLabel = (status: Track["status"]) => {
+    switch (status) {
+      case "draft": return "Borrador"
+      case "published": return "Publicado"
+      case "selling": return "En venta"
+      default: return status
+    }
+  }
+
   return (
     <Suspense fallback={<Loading />}>
       <div className="p-6 lg:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">My Library</h1>
+            <h1 className="text-2xl font-bold text-foreground">Mi biblioteca</h1>
             <p className="text-muted-foreground mt-1">
-              {tracks.length} tracks in your collection
+              {tracks.length} pistas en tu colección
             </p>
           </div>
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
             <Upload className="h-4 w-4 mr-2" />
-            Upload Track
+            Subir pista
           </Button>
         </div>
 
@@ -87,7 +96,7 @@ export default function LibraryPage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search tracks..."
+              placeholder="Buscar pistas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground"
@@ -96,7 +105,7 @@ export default function LibraryPage() {
           <div className="flex gap-2">
             <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
               <Filter className="h-4 w-4 mr-2" />
-              Filters
+              Filtros
             </Button>
             <div className="flex border border-border rounded-lg overflow-hidden">
               <button
@@ -121,12 +130,12 @@ export default function LibraryPage() {
             <table className="w-full">
               <thead className="bg-secondary">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Track</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden md:table-cell">Genre</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider">Pista</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden md:table-cell">Género</th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden lg:table-cell">BPM</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden lg:table-cell">Key</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden sm:table-cell">Status</th>
-                  <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Actions</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden lg:table-cell">Tonalidad</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider hidden sm:table-cell">Estado</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wider">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -158,7 +167,7 @@ export default function LibraryPage() {
                     <td className="px-4 py-4 text-muted-foreground hidden lg:table-cell">{track.key}</td>
                     <td className="px-4 py-4 hidden sm:table-cell">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(track.status)}`}>
-                        {track.status.charAt(0).toUpperCase() + track.status.slice(1)}
+                        {getStatusLabel(track.status)}
                       </span>
                     </td>
                     <td className="px-4 py-4 text-right">
@@ -172,16 +181,16 @@ export default function LibraryPage() {
                           <DropdownMenuItem asChild>
                             <Link href={`/studio/editor/${track.id}`} className="flex items-center cursor-pointer text-foreground hover:bg-secondary">
                               <Edit className="h-4 w-4 mr-2" />
-                              Edit
+                              Editar
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem className="cursor-pointer text-foreground hover:bg-secondary">
                             <Download className="h-4 w-4 mr-2" />
-                            Download
+                            Descargar
                           </DropdownMenuItem>
                           <DropdownMenuItem className="cursor-pointer text-destructive hover:bg-secondary">
                             <Trash2 className="h-4 w-4 mr-2" />
-                            Delete
+                            Eliminar
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -223,23 +232,23 @@ export default function LibraryPage() {
                       <DropdownMenuItem asChild>
                         <Link href={`/studio/editor/${track.id}`} className="flex items-center cursor-pointer text-foreground hover:bg-secondary">
                           <Edit className="h-4 w-4 mr-2" />
-                          Edit
+                          Editar
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer text-foreground hover:bg-secondary">
                         <Download className="h-4 w-4 mr-2" />
-                        Download
+                        Descargar
                       </DropdownMenuItem>
                       <DropdownMenuItem className="cursor-pointer text-destructive hover:bg-secondary">
                         <Trash2 className="h-4 w-4 mr-2" />
-                        Delete
+                        Eliminar
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
                 <div className="mt-2">
                   <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(track.status)}`}>
-                    {track.status.charAt(0).toUpperCase() + track.status.slice(1)}
+                    {getStatusLabel(track.status)}
                   </span>
                 </div>
               </div>

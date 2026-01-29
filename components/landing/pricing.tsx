@@ -4,49 +4,49 @@ import { Check } from "lucide-react"
 
 const plans = [
   {
-    name: "Free",
+    name: "Gratis",
     price: "$0",
-    period: "forever",
-    description: "Perfect for trying out BeatForge",
+    period: "para siempre",
+    description: "Ideal para probar Sinter",
     features: [
-      "5 AI generations per month",
-      "Basic editor access",
-      "MP3 exports only",
-      "Community support"
+      "5 generaciones con IA al mes",
+      "Acceso al editor básico",
+      "Solo exportación MP3",
+      "Soporte comunitario"
     ],
-    cta: "Get Started",
+    cta: "Empezar",
     popular: false
   },
   {
     name: "Pro",
     price: "$19",
-    period: "per month",
-    description: "For serious music creators",
+    period: "al mes",
+    description: "Para creadores serios",
     features: [
-      "Unlimited AI generations",
-      "Full editor access",
-      "WAV, MP3, FLAC exports",
-      "Stem downloads",
-      "Priority support",
-      "Commercial license"
+      "Generaciones con IA ilimitadas",
+      "Editor completo",
+      "Exportación WAV, MP3, FLAC",
+      "Descarga de stems",
+      "Soporte prioritario",
+      "Licencia comercial"
     ],
-    cta: "Start Pro Trial",
+    cta: "Probar Pro",
     popular: true
   },
   {
     name: "Studio",
     price: "$49",
-    period: "per month",
-    description: "For professional studios",
+    period: "al mes",
+    description: "Para estudios profesionales",
     features: [
-      "Everything in Pro",
-      "API access",
-      "Team collaboration",
-      "Custom AI training",
-      "Dedicated support",
-      "Marketplace seller tools"
+      "Todo lo de Pro",
+      "Acceso a API",
+      "Colaboración en equipo",
+      "Entrenamiento de IA personalizado",
+      "Soporte dedicado",
+      "Herramientas para vendedores en marketplace"
     ],
-    cta: "Contact Sales",
+    cta: "Contactar ventas",
     popular: false
   }
 ]
@@ -57,10 +57,10 @@ export function Pricing() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Simple, Transparent Pricing
+            Precios simples y transparentes
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your creative needs. Upgrade or downgrade anytime.
+            Elige el plan que se adapte a tus necesidades. Cambia cuando quieras.
           </p>
         </div>
         
@@ -76,7 +76,7 @@ export function Pricing() {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full">
-                  Most Popular
+                  Más popular
                 </div>
               )}
               

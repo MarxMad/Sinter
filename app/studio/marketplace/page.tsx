@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -23,8 +23,7 @@ import {
   DollarSign,
   Upload
 } from "lucide-react"
-import { useSearchParams, Suspense } from "next/navigation"
-import Loading from "./loading"
+import { useSearchParams } from "next/navigation"
 
 interface MarketplaceTrack {
   id: string
@@ -41,25 +40,55 @@ interface MarketplaceTrack {
   isTrending: boolean
 }
 
+// Contenido precargado del marketplace
 const marketplaceTracks: MarketplaceTrack[] = [
-  { id: "1", name: "Sunset Boulevard", artist: "ProducerX", genre: "Lo-Fi", bpm: 85, key: "C Minor", price: 29.99, plays: 12500, likes: 890, rating: 4.8, isNew: true, isTrending: true },
+  // Lo-Fi
+  { id: "1", name: "Boulevard al atardecer", artist: "ProducerX", genre: "Lo-Fi", bpm: 85, key: "C Minor", price: 29.99, plays: 12500, likes: 890, rating: 4.8, isNew: true, isTrending: true },
+  { id: "9", name: "Lluvia en la ventana", artist: "ChillBeats MX", genre: "Lo-Fi", bpm: 78, key: "A Minor", price: 24.99, plays: 8200, likes: 612, rating: 4.7, isNew: true, isTrending: false },
+  { id: "10", name: "Café y notas", artist: "Lofi Collective", genre: "Lo-Fi", bpm: 82, key: "F Major", price: 19.99, plays: 15600, likes: 1100, rating: 4.9, isNew: false, isTrending: true },
+  // Trap
   { id: "2", name: "Night Rider", artist: "BeatMaster", genre: "Trap", bpm: 140, key: "G Minor", price: 39.99, plays: 8900, likes: 654, rating: 4.6, isNew: false, isTrending: true },
+  { id: "11", name: "Dinero y flow", artist: "Trap King", genre: "Trap", bpm: 145, key: "D Minor", price: 44.99, plays: 11200, likes: 890, rating: 4.8, isNew: true, isTrending: true },
+  { id: "12", name: "Oscuro total", artist: "Dark Beats", genre: "Trap", bpm: 138, key: "C Minor", price: 34.99, plays: 6700, likes: 520, rating: 4.5, isNew: false, isTrending: false },
+  // EDM
   { id: "3", name: "Electric Dreams", artist: "SynthWave", genre: "EDM", bpm: 128, key: "A Minor", price: 24.99, plays: 15600, likes: 1200, rating: 4.9, isNew: false, isTrending: false },
+  { id: "13", name: "Festival drop", artist: "EDM Factory", genre: "EDM", bpm: 128, key: "E Minor", price: 49.99, plays: 18900, likes: 1450, rating: 4.9, isNew: true, isTrending: true },
+  { id: "14", name: "Midnight pulse", artist: "Neon Sounds", genre: "EDM", bpm: 126, key: "G Major", price: 29.99, plays: 9200, likes: 680, rating: 4.6, isNew: false, isTrending: false },
+  // Hip-Hop
   { id: "4", name: "Urban Jungle", artist: "HipHopKing", genre: "Hip-Hop", bpm: 92, key: "D Minor", price: 34.99, plays: 6700, likes: 445, rating: 4.5, isNew: true, isTrending: false },
+  { id: "15", name: "Barrio sur", artist: "MC Beats", genre: "Hip-Hop", bpm: 88, key: "B Minor", price: 27.99, plays: 13400, likes: 920, rating: 4.7, isNew: false, isTrending: true },
+  { id: "16", name: "Old school vibes", artist: "Vinyl Producer", genre: "Hip-Hop", bpm: 95, key: "F Minor", price: 31.99, plays: 7800, likes: 560, rating: 4.6, isNew: true, isTrending: false },
+  // House
   { id: "5", name: "Club Banger", artist: "DJMix", genre: "House", bpm: 124, key: "F Major", price: 44.99, plays: 21000, likes: 1800, rating: 4.9, isNew: false, isTrending: true },
+  { id: "17", name: "Groove nocturno", artist: "House Nation", genre: "House", bpm: 122, key: "A Minor", price: 39.99, plays: 14500, likes: 1120, rating: 4.8, isNew: true, isTrending: true },
+  { id: "18", name: "Deep session", artist: "Underground DJ", genre: "House", bpm: 120, key: "C Minor", price: 36.99, plays: 9800, likes: 720, rating: 4.7, isNew: false, isTrending: false },
+  // Ambient
   { id: "6", name: "Chill Vibes", artist: "MellowBeats", genre: "Ambient", bpm: 70, key: "E Minor", price: 19.99, plays: 4500, likes: 320, rating: 4.4, isNew: true, isTrending: false },
+  { id: "19", name: "Espacio sideral", artist: "Cosmic Drift", genre: "Ambient", bpm: 65, key: "D Major", price: 22.99, plays: 6200, likes: 480, rating: 4.6, isNew: false, isTrending: false },
+  { id: "20", name: "Amanecer digital", artist: "Synth Ambient", genre: "Ambient", bpm: 72, key: "G Major", price: 24.99, plays: 5100, likes: 390, rating: 4.5, isNew: true, isTrending: false },
+  // Drill
   { id: "7", name: "Street Flow", artist: "DrillMaster", genre: "Drill", bpm: 145, key: "B Minor", price: 49.99, plays: 9800, likes: 720, rating: 4.7, isNew: false, isTrending: true },
+  { id: "21", name: "UK drill type", artist: "London Beats", genre: "Drill", bpm: 142, key: "E Minor", price: 44.99, plays: 11200, likes: 850, rating: 4.8, isNew: true, isTrending: true },
+  { id: "22", name: "Hard street", artist: "Block Producer", genre: "Drill", bpm: 148, key: "A Minor", price: 41.99, plays: 7600, likes: 590, rating: 4.6, isNew: false, isTrending: false },
+  // Reggaeton
   { id: "8", name: "Summer Party", artist: "LatinBeats", genre: "Reggaeton", bpm: 100, key: "A Major", price: 29.99, plays: 11200, likes: 980, rating: 4.6, isNew: true, isTrending: false },
+  { id: "23", name: "Perreo fino", artist: "Reggaeton Lab", genre: "Reggaeton", bpm: 98, key: "D Minor", price: 32.99, plays: 16800, likes: 1320, rating: 4.9, isNew: true, isTrending: true },
+  { id: "24", name: "Dembow session", artist: "Caribe Beats", genre: "Reggaeton", bpm: 102, key: "G Major", price: 27.99, plays: 8900, likes: 670, rating: 4.7, isNew: false, isTrending: false },
+  // R&B / Pop / Techno / Jazz (más variedad)
+  { id: "25", name: "Midnight soul", artist: "Soul Kitchen", genre: "R&B", bpm: 92, key: "C Minor", price: 35.99, plays: 7200, likes: 540, rating: 4.7, isNew: false, isTrending: false },
+  { id: "26", name: "Pop hook ready", artist: "Hit Maker", genre: "Pop", bpm: 118, key: "F Major", price: 38.99, plays: 19800, likes: 1560, rating: 4.9, isNew: true, isTrending: true },
+  { id: "27", name: "Techno warehouse", artist: "Berlin Nights", genre: "Techno", bpm: 130, key: "A Minor", price: 42.99, plays: 10200, likes: 780, rating: 4.8, isNew: false, isTrending: true },
+  { id: "28", name: "Jazz lounge", artist: "Smooth Keys", genre: "Jazz", bpm: 90, key: "E Minor", price: 33.99, plays: 5400, likes: 410, rating: 4.6, isNew: true, isTrending: false },
 ]
 
-const genres = ["All", "Hip-Hop", "EDM", "House", "Trap", "Lo-Fi", "Drill", "Reggaeton", "Ambient"]
+const genres = ["Todos", "Hip-Hop", "EDM", "House", "Trap", "Lo-Fi", "Drill", "Reggaeton", "Ambient", "R&B", "Pop", "Techno", "Jazz"]
 
 export default function MarketplacePage() {
   const searchParams = useSearchParams()
   const [tracks] = useState<MarketplaceTrack[]>(marketplaceTracks)
   const [playingTrack, setPlayingTrack] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedGenre, setSelectedGenre] = useState("All")
+  const [selectedGenre, setSelectedGenre] = useState("Todos")
   const [sortBy, setSortBy] = useState("trending")
   const [likedTracks, setLikedTracks] = useState<string[]>([])
   const [cart, setCart] = useState<string[]>([])
@@ -68,7 +97,7 @@ export default function MarketplacePage() {
     .filter(track => 
       (track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       track.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      (selectedGenre === "All" || track.genre === selectedGenre)
+      (selectedGenre === "Todos" || track.genre === selectedGenre)
     )
     .sort((a, b) => {
       switch (sortBy) {
@@ -103,24 +132,28 @@ export default function MarketplacePage() {
   }
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={
+      <div className="p-6 lg:p-8 flex items-center justify-center min-h-[400px]">
+        <div className="animate-pulse text-muted-foreground">Cargando marketplace...</div>
+      </div>
+    }>
       <div className="p-6 lg:p-8">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl font-bold text-foreground">Marketplace</h1>
             <p className="text-muted-foreground mt-1">
-              Discover and purchase high-quality beats from talented producers
+              Descubre y compra beats de alta calidad de productores talentosos
             </p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
               <Upload className="h-4 w-4 mr-2" />
-              Sell Your Beats
+              Vender tus beats
             </Button>
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 relative">
               <ShoppingCart className="h-4 w-4 mr-2" />
-              Cart
+              Carrito
               {cart.length > 0 && (
                 <span className="absolute -top-2 -right-2 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
                   {cart.length}
@@ -133,10 +166,10 @@ export default function MarketplacePage() {
         {/* Stats Banner */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Total Beats", value: "12,500+", icon: TrendingUp },
-            { label: "New This Week", value: "340", icon: Clock },
-            { label: "Top Rated", value: "4.8", icon: Star },
-            { label: "Avg. Price", value: "$32", icon: DollarSign },
+            { label: "Total de beats", value: "12.500+", icon: TrendingUp },
+            { label: "Nuevos esta semana", value: "340", icon: Clock },
+            { label: "Mejor valorados", value: "4.8", icon: Star },
+            { label: "Precio promedio", value: "$32", icon: DollarSign },
           ].map((stat, i) => (
             <div key={i} className="bg-card border border-border rounded-xl p-4 flex items-center gap-4">
               <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -155,7 +188,7 @@ export default function MarketplacePage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search beats, artists..."
+              placeholder="Buscar beats, artistas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground"
@@ -180,11 +213,11 @@ export default function MarketplacePage() {
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-card border-border">
-                <SelectItem value="trending" className="text-foreground hover:bg-secondary cursor-pointer">Trending</SelectItem>
-                <SelectItem value="newest" className="text-foreground hover:bg-secondary cursor-pointer">Newest</SelectItem>
-                <SelectItem value="popular" className="text-foreground hover:bg-secondary cursor-pointer">Most Popular</SelectItem>
-                <SelectItem value="price-low" className="text-foreground hover:bg-secondary cursor-pointer">Price: Low to High</SelectItem>
-                <SelectItem value="price-high" className="text-foreground hover:bg-secondary cursor-pointer">Price: High to Low</SelectItem>
+                <SelectItem value="trending" className="text-foreground hover:bg-secondary cursor-pointer">Tendencia</SelectItem>
+                <SelectItem value="newest" className="text-foreground hover:bg-secondary cursor-pointer">Más recientes</SelectItem>
+                <SelectItem value="popular" className="text-foreground hover:bg-secondary cursor-pointer">Más populares</SelectItem>
+                <SelectItem value="price-low" className="text-foreground hover:bg-secondary cursor-pointer">Precio: menor a mayor</SelectItem>
+                <SelectItem value="price-high" className="text-foreground hover:bg-secondary cursor-pointer">Precio: mayor a menor</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -198,16 +231,21 @@ export default function MarketplacePage() {
               <div className="aspect-square bg-secondary relative">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="flex items-end gap-1 h-24 px-8">
-                    {[...Array(16)].map((_, i) => (
-                      <div
-                        key={i}
-                        className={`flex-1 bg-primary/50 rounded-t ${playingTrack === track.id ? "animate-pulse" : ""}`}
-                        style={{ 
-                          height: `${Math.random() * 80 + 20}%`,
-                          animationDelay: `${i * 0.05}s`
-                        }}
-                      />
-                    ))}
+                    {[...Array(16)].map((_, i) => {
+                      // Altura determinista desde track.id + índice para que servidor y cliente coincidan (evitar hydration mismatch)
+                      const seed = (parseInt(track.id, 10) || 0) * 7 + i * 11
+                      const heightPct = (seed % 81) + 20
+                      return (
+                        <div
+                          key={i}
+                          className={`flex-1 bg-primary/50 rounded-t ${playingTrack === track.id ? "animate-pulse" : ""}`}
+                          style={{
+                            height: `${heightPct}%`,
+                            animationDelay: `${(i * 0.05).toFixed(2)}s`,
+                          }}
+                        />
+                      )
+                    })}
                   </div>
                 </div>
                 
@@ -215,12 +253,12 @@ export default function MarketplacePage() {
                 <div className="absolute top-3 left-3 flex gap-2">
                   {track.isNew && (
                     <span className="px-2 py-1 bg-primary text-primary-foreground text-xs font-medium rounded">
-                      NEW
+                      NUEVO
                     </span>
                   )}
                   {track.isTrending && (
                     <span className="px-2 py-1 bg-accent text-accent-foreground text-xs font-medium rounded">
-                      HOT
+                      TENDENCIA
                     </span>
                   )}
                 </div>
@@ -290,7 +328,7 @@ export default function MarketplacePage() {
                   }`}
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
-                  {cart.includes(track.id) ? "In Cart" : "Add to Cart"}
+                  {cart.includes(track.id) ? "En el carrito" : "Añadir al carrito"}
                 </Button>
               </div>
             </div>
@@ -300,7 +338,7 @@ export default function MarketplacePage() {
         {/* Load More */}
         <div className="mt-8 text-center">
           <Button variant="outline" className="border-border text-foreground hover:bg-secondary px-8 bg-transparent">
-            Load More Beats
+            Cargar más beats
           </Button>
         </div>
       </div>

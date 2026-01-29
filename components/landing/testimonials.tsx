@@ -4,13 +4,13 @@ const testimonials = [
   {
     name: "Marcus Chen",
     role: "Hip-Hop Producer",
-    content: "BeatForge has completely changed my workflow. I can generate unique beats in minutes and customize them to perfection. My production speed has tripled.",
+    content: "Sinter has completely changed my workflow. I can generate unique beats in minutes and customize them to perfection. My production speed has tripled.",
     rating: 5
   },
   {
     name: "Sarah Williams",
     role: "EDM DJ",
-    content: "The quality of the AI-generated tracks is incredible. I use BeatForge for all my live sets now. The genre accuracy is spot-on.",
+    content: "The quality of the AI-generated tracks is incredible. I use Sinter for all my live sets now. The genre accuracy is spot-on.",
     rating: 5
   },
   {
@@ -30,7 +30,7 @@ export function Testimonials() {
             Loved by Artists Worldwide
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of musicians who trust BeatForge for their creative process.
+            Join thousands of musicians who trust Sinter for their creative process.
           </p>
         </div>
         

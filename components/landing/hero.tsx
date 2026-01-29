@@ -3,178 +3,78 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Play, Sparkles } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
 import { AudioVisualizer } from "./audio-visualizer"
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"]
-  })
-
-  // Efectos parallax
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
   return (
-    <section 
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Contenedor de video de fondo */}
       <div className="absolute inset-0 z-0">
-        {/* Overlay oscuro para mejorar legibilidad del texto */}
         <div className="absolute inset-0 bg-background/60 z-10" />
-        
-        {/* Contenedor para el video - se puede reemplazar con un video real */}
         <div className="absolute inset-0">
-          {/* Placeholder para video - reemplazar con <video> cuando tengas el archivo */}
           <div className="w-full h-full bg-background">
-            {/* Aquí irá el video cuando lo agregues:
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="/videos/hero-background.mp4" type="video/mp4" />
-            </video>
-            */}
+            {/* Placeholder para video - reemplazar con <video> cuando tengas el archivo */}
           </div>
         </div>
       </div>
 
-      {/* Contenido principal con parallax */}
-      <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full"
-        style={{ y, opacity }}
-      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
         <div className="text-center max-w-4xl mx-auto">
-          <motion.div 
-            className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/90 backdrop-blur-sm rounded-full mb-6 border border-primary/30"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="h-4 w-4 text-primary" />
-            </motion.div>
-            <span className="text-sm text-muted-foreground">AI-Powered Music Generation</span>
-          </motion.div>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/90 backdrop-blur-sm rounded-full mb-6 border border-primary/30">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <span className="text-sm text-muted-foreground">Generación de música con IA</span>
+          </div>
           
-          <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Create Professional
-            <span className="text-primary block">Beats & Melodies</span>
-            with AI
-          </motion.h1>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance">
+            Crea
+            <span className="text-primary block">beats y melodías</span>
+            profesionales con IA
+          </h1>
           
-          <motion.p 
-            className="mt-6 text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto text-pretty"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            The ultimate platform for artists and DJs to generate unique music, 
-            edit tracks, and sell your creations. No musical expertise required.
-          </motion.p>
+          <p className="mt-6 text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto text-pretty">
+            La plataforma definitiva para artistas y DJs: genera música única, 
+            edita pistas y vende tus creaciones. Sin necesidad de experiencia musical.
+          </p>
           
-          <motion.div 
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/register">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg shadow-lg">
-                  Start Creating Free
-                </Button>
-              </motion.div>
-            </Link>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 border-accent text-foreground hover:bg-accent/10 bg-transparent backdrop-blur-sm">
-                <Play className="h-5 w-5 mr-2" />
-                Watch Demo
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg shadow-lg">
+                Empezar gratis
               </Button>
-            </motion.div>
-          </motion.div>
+            </Link>
+            <Button size="lg" variant="outline" className="px-8 py-6 text-lg border-2 border-accent text-foreground hover:bg-accent/10 bg-transparent backdrop-blur-sm">
+              <Play className="h-5 w-5 mr-2" />
+              Ver demo
+            </Button>
+          </div>
           
-          <motion.div 
-            className="mt-16 flex items-center justify-center gap-8 text-muted-foreground"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
+          <div className="mt-16 flex items-center justify-center gap-8 text-muted-foreground">
             {[
-              { value: "50K+", label: "Artists" },
-              { value: "1M+", label: "Tracks Created" },
-              { value: "20+", label: "Genres" }
+              { value: "50K+", label: "Artistas" },
+              { value: "1M+", label: "Pistas creadas" },
+              { value: "20+", label: "Géneros" }
             ].map((stat, index) => (
               <div key={index} className="flex items-center gap-8">
-                <motion.div 
-                  className="text-center"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <motion.p 
-                    className="text-3xl font-bold text-primary"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9 + index * 0.1 }}
-                  >
-                    {stat.value}
-                  </motion.p>
+                <div className="text-center">
+                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
                   <p className="text-sm mt-1 text-foreground/70">{stat.label}</p>
-                </motion.div>
+                </div>
                 {index < 2 && <div className="w-px h-12 bg-border" />}
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         
-        <motion.div 
-          className="mt-20 relative"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
+        <div className="mt-20 relative">
           <div className="bg-card/90 backdrop-blur-xl border-2 border-primary/30 rounded-2xl p-4 md:p-8 max-w-4xl mx-auto shadow-2xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="flex gap-2">
-                <motion.div 
-                  className="w-3 h-3 rounded-full bg-destructive"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div 
-                  className="w-3 h-3 rounded-full bg-primary"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-                />
-                <motion.div 
-                  className="w-3 h-3 rounded-full bg-accent"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
-                />
+                <div className="w-3 h-3 rounded-full bg-destructive" />
+                <div className="w-3 h-3 rounded-full bg-primary" />
+                <div className="w-3 h-3 rounded-full bg-accent" />
               </div>
               <div className="flex-1 bg-secondary/70 backdrop-blur-sm rounded px-4 py-2 text-sm text-muted-foreground border border-border/50">
-                beatforge.ai/studio
+                sinter.app/studio
               </div>
             </div>
             
@@ -186,10 +86,7 @@ export function Hero() {
                     <AudioVisualizer isPlaying={true} bars={16} className="h-full" />
                   </div>
                   <div className="flex gap-2">
-                    <motion.div 
-                      className="h-10 bg-primary rounded-lg w-24"
-                      whileHover={{ scale: 1.05 }}
-                    />
+                    <div className="h-10 bg-primary rounded-lg w-24" />
                     <div className="h-10 bg-border/50 rounded-lg w-20" />
                     <div className="h-10 bg-border/50 rounded-lg w-20" />
                   </div>
@@ -198,16 +95,13 @@ export function Hero() {
                   <div className="h-6 bg-accent/30 rounded" />
                   <div className="h-6 bg-accent/30 rounded w-3/4" />
                   <div className="h-6 bg-accent/30 rounded w-1/2" />
-                  <motion.div 
-                    className="h-10 bg-accent rounded-lg mt-4"
-                    whileHover={{ scale: 1.05 }}
-                  />
+                  <div className="h-10 bg-accent rounded-lg mt-4" />
                 </div>
               </div>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   )
 }

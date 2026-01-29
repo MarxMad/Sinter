@@ -35,21 +35,21 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           <Link href="/" className="flex items-center gap-2 mb-8">
             <Disc3 className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">BeatForge</span>
+            <span className="text-xl font-bold text-foreground">Sinter</span>
           </Link>
 
-          <h1 className="text-3xl font-bold text-foreground mb-2">Welcome back</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Bienvenido de nuevo</h1>
           <p className="text-muted-foreground mb-8">
-            Sign in to your account to continue creating music
+            Inicia sesión para seguir creando música
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground">Email</Label>
-              <Input
+                <Label htmlFor="email" className="text-foreground">Correo electrónico</Label>
+                <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="tu@ejemplo.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="bg-secondary border-border text-foreground placeholder:text-muted-foreground"
@@ -59,16 +59,16 @@ export default function LoginPage() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password" className="text-foreground">Password</Label>
+                <Label htmlFor="password" className="text-foreground">Contraseña</Label>
                 <Link href="#" className="text-sm text-primary hover:underline">
-                  Forgot password?
+                  ¿Olvidaste tu contraseña?
                 </Link>
               </div>
               <div className="relative">
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                  placeholder="Introduce tu contraseña"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="bg-secondary border-border text-foreground placeholder:text-muted-foreground pr-10"
@@ -89,7 +89,7 @@ export default function LoginPage() {
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
             </Button>
           </form>
 
@@ -99,7 +99,7 @@ export default function LoginPage() {
                 <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-background text-muted-foreground">Or continue with</span>
+                <span className="px-2 bg-background text-muted-foreground">O continúa con</span>
               </div>
             </div>
 
@@ -123,9 +123,9 @@ export default function LoginPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
-            {"Don't have an account? "}
+            {"¿No tienes cuenta? "}
             <Link href="/register" className="text-primary hover:underline font-medium">
-              Sign up
+              Regístrate
             </Link>
           </p>
         </div>
@@ -149,10 +149,10 @@ export default function LoginPage() {
             </div>
           </div>
           <h2 className="text-2xl font-bold text-foreground mb-4">
-            Create unlimited music
+            Crea música sin límites
           </h2>
           <p className="text-muted-foreground">
-            Generate professional beats and melodies using AI. Over 50,000 artists trust BeatForge.
+            Genera beats y melodías profesionales con IA. Más de 50.000 artistas confían en Sinter.
           </p>
         </div>
       </div>

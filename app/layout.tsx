@@ -8,9 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'BeatForge AI - Generate Music with AI',
-  description: 'Professional AI-powered music generation platform for artists and DJs. Create beats, melodies, and sell your music.',
-  generator: 'v0.app',
+  title: 'Sinter - Genera música con IA',
+  description: 'Plataforma profesional de generación de música con IA para artistas y DJs. Crea beats, melodías y vende tu música.',
   icons: {
     icon: [
       {
@@ -36,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />

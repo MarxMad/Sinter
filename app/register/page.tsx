@@ -22,10 +22,10 @@ export default function RegisterPage() {
   })
 
   const artistTypes = [
-    { id: "producer", label: "Music Producer" },
+    { id: "producer", label: "Productor musical" },
     { id: "dj", label: "DJ" },
-    { id: "artist", label: "Recording Artist" },
-    { id: "other", label: "Other" }
+    { id: "artist", label: "Artista" },
+    { id: "other", label: "Otro" }
   ]
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,15 +43,15 @@ export default function RegisterPage() {
       <div className="hidden lg:flex flex-1 bg-card items-center justify-center p-8">
         <div className="max-w-md">
           <h2 className="text-3xl font-bold text-foreground mb-6">
-            Start creating music with AI today
+            Empieza a crear música con IA hoy
           </h2>
           <ul className="space-y-4">
             {[
-              "Generate unlimited beats and melodies",
-              "Access 20+ music genres",
-              "Export in WAV, MP3, and FLAC",
-              "Sell your creations on our marketplace",
-              "No musical expertise required"
+              "Genera beats y melodías sin límite",
+              "Accede a más de 20 géneros musicales",
+              "Exporta en WAV, MP3 y FLAC",
+              "Vende tus creaciones en el marketplace",
+              "No necesitas experiencia musical"
             ].map((feature, i) => (
               <li key={i} className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
@@ -73,7 +73,7 @@ export default function RegisterPage() {
               </div>
             </div>
             <p className="text-muted-foreground italic">
-              {`"BeatForge changed the way I create music. The AI understands exactly what I'm looking for and delivers professional-quality results every time."`}
+              {`"Sinter cambió la forma en que creo música. La IA entiende exactamente lo que busco y entrega resultados de calidad profesional."`}
             </p>
           </div>
         </div>
@@ -84,21 +84,21 @@ export default function RegisterPage() {
         <div className="w-full max-w-md">
           <Link href="/" className="flex items-center gap-2 mb-8">
             <Disc3 className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">BeatForge</span>
+            <span className="text-xl font-bold text-foreground">Sinter</span>
           </Link>
 
-          <h1 className="text-3xl font-bold text-foreground mb-2">Create your account</h1>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Crea tu cuenta</h1>
           <p className="text-muted-foreground mb-8">
-            Join 50,000+ artists creating music with AI
+            Únete a más de 50.000 artistas que crean música con IA
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-foreground">Full name</Label>
+              <Label htmlFor="name" className="text-foreground">Nombre completo</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="John Doe"
+                placeholder="Tu nombre"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="bg-secondary border-border text-foreground placeholder:text-muted-foreground"
@@ -107,11 +107,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-foreground">Email</Label>
+              <Label htmlFor="email" className="text-foreground">Correo electrónico</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="tu@ejemplo.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="bg-secondary border-border text-foreground placeholder:text-muted-foreground"
@@ -120,12 +120,12 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-foreground">Password</Label>
+              <Label htmlFor="password" className="text-foreground">Contraseña</Label>
               <div className="relative">
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Create a strong password"
+                  placeholder="Crea una contraseña segura"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="bg-secondary border-border text-foreground placeholder:text-muted-foreground pr-10"
@@ -142,7 +142,7 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label className="text-foreground">I am a...</Label>
+              <Label className="text-foreground">Soy...</Label>
               <div className="grid grid-cols-2 gap-3">
                 {artistTypes.map((type) => (
                   <button
@@ -166,14 +166,14 @@ export default function RegisterPage() {
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
               disabled={isLoading}
             >
-              {isLoading ? "Creating account..." : "Create account"}
+              {isLoading ? "Creando cuenta..." : "Crear cuenta"}
             </Button>
 
             <p className="text-xs text-muted-foreground text-center">
-              By creating an account, you agree to our{" "}
-              <Link href="#" className="text-primary hover:underline">Terms of Service</Link>
-              {" "}and{" "}
-              <Link href="#" className="text-primary hover:underline">Privacy Policy</Link>
+              Al crear una cuenta aceptas nuestros{" "}
+              <Link href="#" className="text-primary hover:underline">Términos de servicio</Link>
+              {" "}y{" "}
+              <Link href="#" className="text-primary hover:underline">Política de privacidad</Link>
             </p>
           </form>
 
@@ -183,7 +183,7 @@ export default function RegisterPage() {
                 <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-background text-muted-foreground">Or continue with</span>
+                <span className="px-2 bg-background text-muted-foreground">O continúa con</span>
               </div>
             </div>
 
@@ -207,9 +207,9 @@ export default function RegisterPage() {
           </div>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
+            ¿Ya tienes cuenta?{" "}
             <Link href="/login" className="text-primary hover:underline font-medium">
-              Sign in
+              Iniciar sesión
             </Link>
           </p>
         </div>

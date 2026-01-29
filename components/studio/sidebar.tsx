@@ -15,14 +15,14 @@ import {
 import { cn } from "@/lib/utils"
 
 const navigation = [
-  { name: "Generate", href: "/studio", icon: Wand2 },
-  { name: "My Library", href: "/studio/library", icon: Library },
+  { name: "Generar", href: "/studio", icon: Wand2 },
+  { name: "Mi biblioteca", href: "/studio/library", icon: Library },
   { name: "Marketplace", href: "/studio/marketplace", icon: ShoppingBag },
 ]
 
 const secondaryNav = [
-  { name: "Settings", href: "/studio/settings", icon: Settings },
-  { name: "Help", href: "#", icon: HelpCircle },
+  { name: "Ajustes", href: "/studio/settings", icon: Settings },
+  { name: "Ayuda", href: "#", icon: HelpCircle },
 ]
 
 export function StudioSidebar() {
@@ -33,7 +33,7 @@ export function StudioSidebar() {
       <div className="p-6">
         <Link href="/" className="flex items-center gap-2">
           <Disc3 className="h-8 w-8 text-primary" />
-          <span className="text-xl font-bold text-foreground">BeatForge</span>
+          <span className="text-xl font-bold text-foreground">Sinter</span>
         </Link>
       </div>
 
@@ -71,7 +71,7 @@ export function StudioSidebar() {
         ))}
         <button className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors w-full">
           <LogOut className="h-5 w-5" />
-          Log out
+          Cerrar sesión
         </button>
       </div>
 
@@ -81,12 +81,12 @@ export function StudioSidebar() {
             <Music className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <p className="text-sm font-medium text-foreground">Pro Plan</p>
-            <p className="text-xs text-muted-foreground">Unlimited access</p>
+            <p className="text-sm font-medium text-foreground">Plan Pro</p>
+            <p className="text-xs text-muted-foreground">Acceso ilimitado</p>
           </div>
         </div>
         <div className="text-xs text-muted-foreground">
-          <span className="text-primary font-medium">147</span> tracks generated this month
+          <span className="text-primary font-medium">147</span> pistas generadas este mes
         </div>
       </div>
     </aside>

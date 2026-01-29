@@ -22,7 +22,7 @@ const genres = [
 ]
 
 const moods = [
-  "Energetic", "Chill", "Dark", "Happy", "Melancholic", "Aggressive"
+  "Energético", "Relajado", "Oscuro", "Feliz", "Melancólico", "Agresivo"
 ]
 
 const keys = [
@@ -64,9 +64,9 @@ export default function StudioPage() {
   return (
     <div className="p-6 lg:p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-foreground">Generate Music</h1>
+        <h1 className="text-2xl font-bold text-foreground">Generar música</h1>
         <p className="text-muted-foreground mt-1">
-          Create unique beats and melodies using AI
+          Crea beats y melodías únicos con IA
         </p>
       </div>
 
@@ -76,7 +76,7 @@ export default function StudioPage() {
           {/* Genre Selection */}
           <div className="bg-card border border-border rounded-xl p-6">
             <Label className="text-foreground text-lg font-semibold mb-4 block">
-              Select Genre
+              Seleccionar género
             </Label>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
               {genres.map((genre) => (
@@ -98,7 +98,7 @@ export default function StudioPage() {
           {/* Mood Selection */}
           <div className="bg-card border border-border rounded-xl p-6">
             <Label className="text-foreground text-lg font-semibold mb-4 block">
-              Mood
+              Ambiente
             </Label>
             <div className="flex flex-wrap gap-3">
               {moods.map((mood) => (
@@ -120,7 +120,7 @@ export default function StudioPage() {
           {/* Parameters */}
           <div className="bg-card border border-border rounded-xl p-6 space-y-6">
             <Label className="text-foreground text-lg font-semibold block">
-              Parameters
+              Parámetros
             </Label>
 
             <div className="grid sm:grid-cols-2 gap-6">
@@ -152,7 +152,7 @@ export default function StudioPage() {
                 <div className="flex items-center justify-between">
                   <Label className="text-foreground flex items-center gap-2">
                     <Volume2 className="h-4 w-4 text-primary" />
-                    Duration (sec)
+                    Duración (seg)
                   </Label>
                   <span className="text-sm text-primary font-medium">{duration[0]}s</span>
                 </div>
@@ -175,7 +175,7 @@ export default function StudioPage() {
             <div className="space-y-4">
               <Label className="text-foreground flex items-center gap-2">
                 <Music2 className="h-4 w-4 text-primary" />
-                Musical Key
+                Tonalidad
               </Label>
               <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
                 {keys.map((key) => (
@@ -204,12 +204,12 @@ export default function StudioPage() {
             {isGenerating ? (
               <>
                 <RefreshCw className="h-5 w-5 mr-2 animate-spin" />
-                Generating... {progress}%
+                Generando... {progress}%
               </>
             ) : (
               <>
                 <Wand2 className="h-5 w-5 mr-2" />
-                Generate Track
+                Generar pista
               </>
             )}
           </Button>
@@ -218,7 +218,7 @@ export default function StudioPage() {
         {/* Preview Panel */}
         <div className="space-y-6">
           <div className="bg-card border border-border rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Preview</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Vista previa</h3>
             
             {generatedTrack ? (
               <div className="space-y-6">
@@ -243,13 +243,13 @@ export default function StudioPage() {
                 {/* Track Info */}
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
-                    <span className="text-foreground font-medium">Genre:</span> {selectedGenre}
+                    <span className="text-foreground font-medium">Género:</span> {selectedGenre}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    <span className="text-foreground font-medium">Mood:</span> {selectedMood}
+                    <span className="text-foreground font-medium">Ambiente:</span> {selectedMood}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    <span className="text-foreground font-medium">Key:</span> {selectedKey}
+                    <span className="text-foreground font-medium">Tonalidad:</span> {selectedKey}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     <span className="text-foreground font-medium">BPM:</span> {bpm[0]}
@@ -292,11 +292,11 @@ export default function StudioPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
                     <Save className="h-4 w-4 mr-2" />
-                    Save
+                    Guardar
                   </Button>
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                     <Download className="h-4 w-4 mr-2" />
-                    Export
+                    Exportar
                   </Button>
                 </div>
               </div>
@@ -306,7 +306,7 @@ export default function StudioPage() {
                   <Wand2 className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <p className="text-muted-foreground">
-                  Configure your parameters and click Generate to create a track
+                  Configura los parámetros y haz clic en Generar para crear una pista
                 </p>
               </div>
             )}
@@ -314,12 +314,12 @@ export default function StudioPage() {
 
           {/* Recent Generations */}
           <div className="bg-card border border-border rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Recent</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Recientes</h3>
             <div className="space-y-3">
               {[
-                { genre: "Lo-Fi", bpm: 85, time: "2 hours ago" },
-                { genre: "Trap", bpm: 140, time: "5 hours ago" },
-                { genre: "House", bpm: 128, time: "Yesterday" },
+                { genre: "Lo-Fi", bpm: 85, time: "Hace 2 h" },
+                { genre: "Trap", bpm: 140, time: "Hace 5 h" },
+                { genre: "House", bpm: 128, time: "Ayer" },
               ].map((track, i) => (
                 <div key={i} className="flex items-center gap-3 p-3 bg-secondary rounded-lg hover:bg-secondary/80 cursor-pointer transition-colors">
                   <div className="w-10 h-10 bg-primary/20 rounded flex items-center justify-center">
@@ -327,7 +327,7 @@ export default function StudioPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground truncate">
-                      {track.genre} Beat
+                      Beat {track.genre}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       {track.bpm} BPM

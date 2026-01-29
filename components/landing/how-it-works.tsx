@@ -1,44 +1,36 @@
-"use client"
-
-import { ParallaxSection } from "./parallax-section"
-
 export function HowItWorks() {
   const steps = [
     {
       step: "01",
-      title: "Choose Your Genre",
-      description: "Select from 20+ musical genres and set your preferences for BPM, key, and mood."
+      title: "Elige tu género",
+      description: "Selecciona entre más de 20 géneros y define BPM, tonalidad y ambiente."
     },
     {
       step: "02",
-      title: "Generate with AI",
-      description: "Our AI creates unique beats and melodies based on your parameters in seconds."
+      title: "Genera con IA",
+      description: "Nuestra IA crea beats y melodías únicos según tus parámetros en segundos."
     },
     {
       step: "03",
-      title: "Edit & Refine",
-      description: "Use our professional editor to fine-tune every aspect of your track."
+      title: "Edita y refina",
+      description: "Usa nuestro editor profesional para afinar cada aspecto de tu pista."
     },
     {
       step: "04",
-      title: "Export or Sell",
-      description: "Download in multiple formats or list on our marketplace to earn revenue."
+      title: "Exporta o vende",
+      description: "Descarga en varios formatos o publica en el marketplace para generar ingresos."
     }
   ]
 
   return (
-    <ParallaxSection 
-      className="py-20 bg-card"
-      speed={0.3}
-      // imageUrl="/images/how-it-works-bg.jpg" // Descomentar cuando tengas la imagen
-    >
+    <section className="py-20 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            How It Works
+            Cómo funciona
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Create professional music in four simple steps.
+            Crea música profesional en cuatro pasos sencillos.
           </p>
         </div>
         
@@ -61,6 +53,6 @@ export function HowItWorks() {
           ))}
         </div>
       </div>
-    </ParallaxSection>
+    </section>
   )
 }
