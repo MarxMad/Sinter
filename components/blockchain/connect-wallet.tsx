@@ -1,6 +1,6 @@
 "use client"
 
-import { useConnection, useConnect, useConnectors, useDisconnect } from "wagmi"
+import { useAccount, useConnect, useConnectors, useDisconnect } from "wagmi"
 import { Button } from "@/components/ui/button"
 import { Wallet, LogOut } from "lucide-react"
 
@@ -9,7 +9,7 @@ import { Wallet, LogOut } from "lucide-react"
  * Usar en header (landing y studio) para el hackathon Arbitrum.
  */
 export function ConnectWallet() {
-  const { address, isConnected } = useConnection()
+  const { address, isConnected } = useAccount()
   const { connect, isPending } = useConnect()
   const connectors = useConnectors()
   const { disconnect } = useDisconnect()
