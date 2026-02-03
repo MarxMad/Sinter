@@ -1,0 +1,16 @@
+{
+  "tracks": [
+    {
+      "id": "track_1770111110873_nut812xhx",
+      "filename": "track_1770111110873_nut812xhx.wav",
+      "genre": "Hip-Hop",
+      "mood": "Energético",
+      "bpm": 132,
+      "key": "C Minor",
+      "duration": 30,
+      "prompt": "",
+      "createdAt": "2026-02-03T09:31:50.880Z"
+    }
+  ],
+  "lastUpdated": "2026-02-03T09:31:50.880Z"
+}

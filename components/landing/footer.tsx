@@ -15,7 +15,7 @@ export function Footer() {
               Plataforma de generación de música con IA para artistas y DJs de todo el mundo.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-foreground mb-4">Producto</h4>
             <ul className="space-y-2 text-sm">
@@ -26,7 +26,7 @@ export function Footer() {
               <li><Link href="/studio/marketplace" className="text-muted-foreground hover:text-foreground">Marketplace</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-foreground mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
@@ -36,18 +36,18 @@ export function Footer() {
               <li><Link href="#" className="text-muted-foreground hover:text-foreground">Contacto</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-foreground mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-muted-foreground hover:text-foreground">Política de privacidad</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-foreground">Términos de servicio</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-foreground">Licencias</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-foreground">DMCA</Link></li>
+              <li><Link href="/privacy" className="text-muted-foreground hover:text-foreground">Política de privacidad</Link></li>
+              <li><Link href="/terms" className="text-muted-foreground hover:text-foreground">Términos de servicio</Link></li>
+              <li><Link href="/licenses" className="text-muted-foreground hover:text-foreground">Licencias</Link></li>
+              <li><Link href="/dmca" className="text-muted-foreground hover:text-foreground">DMCA</Link></li>
             </ul>
           </div>
         </div>
-        
+
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             2025 Sinter. Todos los derechos reservados.

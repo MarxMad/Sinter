@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, Suspense } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -10,9 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { 
-  Search, 
-  Play, 
+import {
+  Search,
+  Play,
   Pause,
   ShoppingCart,
   Heart,
@@ -94,9 +95,9 @@ export default function MarketplacePage() {
   const [cart, setCart] = useState<string[]>([])
 
   const filteredTracks = tracks
-    .filter(track => 
+    .filter(track =>
       (track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      track.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        track.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
       (selectedGenre === "Todos" || track.genre === selectedGenre)
     )
     .sort((a, b) => {
@@ -111,15 +112,15 @@ export default function MarketplacePage() {
     })
 
   const toggleLike = (trackId: string) => {
-    setLikedTracks(prev => 
-      prev.includes(trackId) 
+    setLikedTracks(prev =>
+      prev.includes(trackId)
         ? prev.filter(id => id !== trackId)
         : [...prev, trackId]
     )
   }
 
   const toggleCart = (trackId: string) => {
-    setCart(prev => 
+    setCart(prev =>
       prev.includes(trackId)
         ? prev.filter(id => id !== trackId)
         : [...prev, trackId]
@@ -147,19 +148,23 @@ export default function MarketplacePage() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
-              <Upload className="h-4 w-4 mr-2" />
-              Vender tus beats
-            </Button>
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 relative">
-              <ShoppingCart className="h-4 w-4 mr-2" />
-              Carrito
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
-                  {cart.length}
-                </span>
-              )}
-            </Button>
+            <Link href="/studio/marketplace/upload">
+              <Button variant="outline" className="border-border text-foreground hover:bg-secondary bg-transparent">
+                <Upload className="h-4 w-4 mr-2" />
+                Vender tus beats
+              </Button>
+            </Link>
+            <Link href="/studio/marketplace/cart">
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 relative">
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Carrito
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 w-5 h-5 bg-accent text-accent-foreground text-xs rounded-full flex items-center justify-center">
+                    {cart.length}
+                  </span>
+                )}
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -248,7 +253,7 @@ export default function MarketplacePage() {
                     })}
                   </div>
                 </div>
-                
+
                 {/* Badges */}
                 <div className="absolute top-3 left-3 flex gap-2">
                   {track.isNew && (
@@ -280,8 +285,8 @@ export default function MarketplacePage() {
                   onClick={() => toggleLike(track.id)}
                   className="absolute top-3 right-3 w-8 h-8 bg-background/80 rounded-full flex items-center justify-center hover:bg-background transition-colors"
                 >
-                  <Heart 
-                    className={`h-4 w-4 ${likedTracks.includes(track.id) ? "fill-primary text-primary" : "text-foreground"}`} 
+                  <Heart
+                    className={`h-4 w-4 ${likedTracks.includes(track.id) ? "fill-primary text-primary" : "text-foreground"}`}
                   />
                 </button>
               </div>
@@ -290,7 +295,9 @@ export default function MarketplacePage() {
               <div className="p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div>
-                    <h3 className="font-semibold text-foreground">{track.name}</h3>
+                    <Link href={`/studio/marketplace/${track.id}`} className="font-semibold text-foreground hover:text-primary transition-colors">
+                      {track.name}
+                    </Link>
                     <p className="text-sm text-muted-foreground">{track.artist}</p>
                   </div>
                   <div className="text-right">
@@ -319,13 +326,12 @@ export default function MarketplacePage() {
                   </span>
                 </div>
 
-                <Button 
+                <Button
                   onClick={() => toggleCart(track.id)}
-                  className={`w-full ${
-                    cart.includes(track.id)
-                      ? "bg-accent text-accent-foreground hover:bg-accent/90"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90"
-                  }`}
+                  className={`w-full ${cart.includes(track.id)
+                    ? "bg-accent text-accent-foreground hover:bg-accent/90"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
+                    }`}
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   {cart.includes(track.id) ? "En el carrito" : "Añadir al carrito"}

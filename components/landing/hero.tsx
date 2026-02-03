@@ -10,11 +10,18 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Contenedor de video de fondo */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-background/60 z-10" />
+        <div className="absolute inset-0 bg-background/70 z-10" />
         <div className="absolute inset-0">
-          <div className="w-full h-full bg-background">
-            {/* Placeholder para video - reemplazar con <video> cuando tengas el archivo */}
-          </div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videosinter.mp4" type="video/mp4" />
+            Tu navegador no soporta el elemento de video.
+          </video>
         </div>
       </div>
 
@@ -24,18 +31,18 @@ export function Hero() {
             <Sparkles className="h-4 w-4 text-primary" />
             <span className="text-sm text-muted-foreground">Generación de música con IA</span>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight text-balance">
             Crea
             <span className="text-primary block">beats y melodías</span>
             profesionales con IA
           </h1>
-          
+
           <p className="mt-6 text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto text-pretty">
-            La plataforma definitiva para artistas y DJs: genera música única, 
+            La plataforma definitiva para artistas y DJs: genera música única,
             edita pistas y vende tus creaciones. Sin necesidad de experiencia musical.
           </p>
-          
+
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/register">
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg shadow-lg">
@@ -47,7 +54,7 @@ export function Hero() {
               Ver demo
             </Button>
           </div>
-          
+
           <div className="mt-16 flex items-center justify-center gap-8 text-muted-foreground">
             {[
               { value: "50K+", label: "Artistas" },
@@ -64,7 +71,7 @@ export function Hero() {
             ))}
           </div>
         </div>
-        
+
         <div className="mt-20 relative">
           <div className="bg-card/90 backdrop-blur-xl border-2 border-primary/30 rounded-2xl p-4 md:p-8 max-w-4xl mx-auto shadow-2xl">
             <div className="flex items-center gap-4 mb-6">
@@ -77,7 +84,7 @@ export function Hero() {
                 sinter.app/studio
               </div>
             </div>
-            
+
             <div className="bg-secondary/40 backdrop-blur-sm rounded-xl p-6 border border-border/50">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1 space-y-4">

@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-import { Menu, X, Disc3 } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { ConnectWallet } from "@/components/blockchain/connect-wallet"
 
 export function Header() {
@@ -14,7 +15,13 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
-            <Disc3 className="h-8 w-8 text-primary" />
+            <Image
+              src="/SinterLogo.jpeg"
+              alt="Sinter Logo"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
             <span className="text-xl font-bold text-foreground">Sinter</span>
           </Link>
 
